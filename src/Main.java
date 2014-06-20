@@ -217,11 +217,12 @@ public class Main extends JPanel implements ActionListener{
         canvas.drawString("Wins: " +player1.returnWins()+"",10,60);
     	canvas.drawString("Losses: "+player1.returnLoss()+"",10,40);
     	
-    	//Game buttons
-    	if(buttonClick(660, 560, 50, 420)) fightButton = true; GM.down = false;
-    	if(buttonClick(660, 560, 455, 825)) breedButton = true;
-    	if(buttonClick(660, 560, 860, 1230)) endButton = true;
-    	
+    	if(menuScreenButtons == true){	//menuScreenButtons when false turns off the buttons so that they don't clash with other objects, e.g. Monster Cards.
+    		//Game buttons
+    		if(buttonClick(660, 560, 50, 420)) fightButton = true; GM.down = false;
+    		if(buttonClick(660, 560, 455, 825)) breedButton = true;
+    		if(buttonClick(660, 560, 860, 1230)) endButton = true;
+    	}
     }
 
     public void fightScreen(Graphics2D canvas){
@@ -405,7 +406,7 @@ public class Main extends JPanel implements ActionListener{
 
   //This resolves the problem where buttons may be accidentally pressed while interacting with a Monster Card
     public void monsterCardButtonClash(Mouse mouse){
-    	if((mouse.pointY < MC1.y)&&(mouse.pointY > MC1.y + 450)&&(mouse.pointX > MC1.x)&&(mouse.pointX < MC1.x + 325)){
+    	if((mouse.pointY > MC1.y)&&(mouse.pointY < MC1.y + 450)&&(mouse.pointX > MC1.x)&&(mouse.pointX < MC1.x + 325)){
     		menuScreenButtons = false;
     	}else{
     		menuScreenButtons = true;

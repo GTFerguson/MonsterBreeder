@@ -59,7 +59,7 @@ public class Genetics {
 		
 		genetics[6] =1111;					//Body
 		genetics[7] =1211;					//Skin Colour	
-		genetics[8] =1211;					//Wings
+		genetics[8] =1111;					//Wings
 		genetics[9]	=11;					//Gender
 		genetics[10] =1111;					//Hair Colour
 		genetics[11] =1111;					//Eye Colour
