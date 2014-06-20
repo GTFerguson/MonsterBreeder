@@ -22,8 +22,8 @@ public class Genetics {
 	private int genetics[] = new int[26];
 	private String name;
 
-//Wild Monster
-public Genetics(int reference){
+	//Wild Monster
+	public Genetics(int reference){
 		name = "Artie";
 		
 		//Reference number for finding information in save
@@ -47,7 +47,7 @@ public Genetics(int reference){
 		
 }
 
-public void presetMon(int id){
+	public void presetMon(int id){
 	//Red alphan starter
 	if(id == 0){
 		name = " ";
@@ -58,7 +58,7 @@ public void presetMon(int id){
 		//Image Chromosome Variables
 		
 		genetics[6] =1111;					//Body
-		genetics[7] =1311;					//Skin Colour	
+		genetics[7] =1211;					//Skin Colour	
 		genetics[8] =1211;					//Wings
 		genetics[9]	=11;					//Gender
 		genetics[10] =1111;					//Hair Colour
@@ -88,7 +88,7 @@ public void presetMon(int id){
 	}
 }
 
-public void monImage(Graphics2D canvas,int monX, int monY, boolean flip){
+	public void monImage(Graphics2D canvas,int monX, int monY, boolean flip){
 	
 	//Each value is checked individually one by one with nested if's to choose which image is to be displayed
 	//In later versions these will be done separately to create multiple images that layer on top of each other.
@@ -126,8 +126,8 @@ public void monImage(Graphics2D canvas,int monX, int monY, boolean flip){
 }
 }
 
-//Wings
-public void chromWings(GameImage wingless, GameImage winged, Graphics2D canvas, int monX, int monY, boolean flip){
+	//Wings
+	public void chromWings(GameImage wingless, GameImage winged, Graphics2D canvas, int monX, int monY, boolean flip){
 	//If flip is not true then we use drawRotatedScaled
 	if(flip == false){
 		if(String.valueOf(genetics[8]).substring(0,2).equalsIgnoreCase("11")){
@@ -144,7 +144,7 @@ public void chromWings(GameImage wingless, GameImage winged, Graphics2D canvas, 
 		}}
 }
 
-public String getGender(){
+	public String getGender(){
 	if(String.valueOf(genetics[9]).substring(0,2).equalsIgnoreCase("11")){
 		return "Male";
 	}else{
@@ -152,7 +152,7 @@ public String getGender(){
 	}
 }
 		
-public void statGen(){
+	public void statGen(){
 			/*	 Stat Tier Generation
 				Tier 1 = 40-60
 				Tier 2 = 60-90
@@ -201,58 +201,57 @@ public void statGen(){
 		 		Returns
 		 */
 
-public String returnName(){
-	return name;
-}
+	public String returnName(){
+		return name;
+	}
 
-public int returnStrength(){
-	return genetics[1];				
-		}
+	public int returnStrength(){
+		return genetics[1];				
+	}
 		
-public int returnDexterity(){
-	return genetics[2];				
-		}
+	public int returnDexterity(){
+		return genetics[2];				
+	}
 		
-public int returnConstitution(){
-	return genetics[3];				
-		}
+	public int returnConstitution(){
+		return genetics[3];				
+	}
 		
-public int returnWisdom(){
-	return genetics[4];				
-		}
+	public int returnWisdom(){
+		return genetics[4];				
+	}
 		
-public int returnCharisma(){
-	return genetics[5];				
-		}
+	public int returnCharisma(){
+		return genetics[5];				
+	}
 
-public String returnElement(){
-	if(String.valueOf(genetics[25]).substring(0,1).equalsIgnoreCase("1")){
-		return "Neutral";
+	public String returnElement(){
+		if(String.valueOf(genetics[25]).substring(0,1).equalsIgnoreCase("1")){
+			return "Neutral";
 		}else{
-				return null;
+			return null;
 		}
-}
+	}
 		
 		/*
 		 		Monster Saving
 		 */
 	
-		public void saveMon(String path){
-	    	File outputFile;
-	    	BufferedWriter outputWriter;
-	    	
-		    	try{
-		    		outputFile = new File(path);
-		    		outputWriter = new BufferedWriter(new FileWriter(outputFile));
+	public void saveMon(String path){
+	   	File outputFile;
+	   	BufferedWriter outputWriter;
+    	
+	   	try{
+    		outputFile = new File(path);
+    		outputWriter = new BufferedWriter(new FileWriter(outputFile));
 		    		
-		    		for(int x = 0; x < genetics.length; x++){
-		    			outputWriter.write(Integer.toString(genetics[x]));
-		    			outputWriter.newLine();
-				    	outputWriter.close();
-		    		}
-
-		    }catch(Exception e){
-		    	e.printStackTrace();
-		   }
-	    }
+    	for(int x = 0; x < genetics.length; x++){
+	   		outputWriter.write(Integer.toString(genetics[x]));
+	   		outputWriter.newLine();
+		}
+    		outputWriter.close();
+	}catch(Exception e){
+		e.printStackTrace();
+		}
+	}
 }
