@@ -62,6 +62,9 @@ public class Main extends JPanel implements ActionListener{
 	//---Monster Card Variables---
 	public MonsterCard MC1 = new MonsterCard();
 	
+	//---Map Variables---
+	public Map testMap = new Map(0);
+	
 	//---Storage for images---
 	private GameImage GI_StartScreen;
 	private GameImage GI_MenuScreen;

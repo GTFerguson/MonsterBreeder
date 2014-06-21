@@ -7,7 +7,7 @@ import java.io.FileWriter;
   The first two digits of each variable is used to generate the monster's sprite. The last 2 digits are 
   used in the breeding class. */
 
-public class Genetics { 
+public class Genetics {
 	
 	//Storage for images	
 	private GameImage GI_A;
@@ -131,14 +131,14 @@ public class Genetics {
 	//If flip is not true then we use drawRotatedScaled
 	if(flip == false){
 		if(String.valueOf(genetics[8]).substring(0,2).equalsIgnoreCase("11")){
-			wingless.drawRotatedScaled(canvas, monX, monY, 0, 23);
+			wingless.drawRotatedScaled(canvas, monX, monY, 0, 3);
 		}else if(String.valueOf(genetics[8]).substring(0,2).equalsIgnoreCase("12")){
 			winged.drawRotatedScaled(canvas, monX, monY, 0, 3);
 		}
 	//If flip is true then drawRSflipHor is used
 	}else{
 		if(String.valueOf(genetics[8]).substring(0,2).equalsIgnoreCase("11")){
-			wingless.drawRSflipHor(canvas, monX, monY, 0, 23);
+			wingless.drawRSflipHor(canvas, monX, monY, 0, 3);
 		}else if(String.valueOf(genetics[8]).substring(0,2).equalsIgnoreCase("12")){
 			winged.drawRSflipHor(canvas, monX, monY, 0, 3);
 		}}
