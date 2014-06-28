@@ -21,10 +21,13 @@ public class Genetics {
 
 	private int genetics[] = new int[26];
 	private String name;
+	private int level, experience;
+	private float expCurve;		//Determines how fast a monster levels up
 
 	//Wild Monster
 	public Genetics(int reference){
 		name = "Artie";
+		experience = 100;
 		
 		//Reference number for finding information in save
 		genetics[0] = reference;
@@ -34,6 +37,8 @@ public class Genetics {
 		genetics[3] =0;						//Constitution
 		genetics[4] =0;						//Wisdom
 		genetics[5] =0;						//Charisma
+		
+		levelControl();
 		
 		//Load Images
 		GI_A = new GameImage("Alphan/A.png");
@@ -51,6 +56,8 @@ public class Genetics {
 	//Red alphan starter
 	if(id == 0){
 		name = " ";
+		level = 4;
+		expCurve = 10;
 	
 		//Stat Values
 		
@@ -89,41 +96,36 @@ public class Genetics {
 }
 
 	public void monImage(Graphics2D canvas,int monX, int monY, boolean flip){
-	
-	//Each value is checked individually one by one with nested if's to choose which image is to be displayed
-	//In later versions these will be done separately to create multiple images that layer on top of each other.
+		//Each value is checked individually one by one with nested if's to choose which image is to be displayed
+		//In later versions these will be done separately to create multiple images that layer on top of each other.
 
-	//Alphan (currently the only monster available)
-	if(String.valueOf(genetics[6]).substring(0,2).equalsIgnoreCase("11")){
+		//Alphan (currently the only monster available)
+		if(String.valueOf(genetics[6]).substring(0,2).equalsIgnoreCase("11")){
 	
-		//White Alphan
-		if(String.valueOf(genetics[7]).substring(0,2).equalsIgnoreCase("11")){
-			
-			//Wings
-			chromWings(GI_A, GI_AW, canvas, monX, monY, flip);
+			//White Alphan
+			if(String.valueOf(genetics[7]).substring(0,2).equalsIgnoreCase("11")){
+				//Wings
+				chromWings(GI_A, GI_AW, canvas, monX, monY, flip);
 		}
 		
 		//Red Alphan
 		if(String.valueOf(genetics[7]).substring(0,2).equalsIgnoreCase("12")){
-			
 			//Wings
 			chromWings(GI_AR, GI_ARW, canvas, monX, monY, flip);
 		}
 		
 		//Blue Alphan
 		if(String.valueOf(genetics[7]).substring(0,2).equalsIgnoreCase("13")){
-
 			//Wings
 			chromWings(GI_AB, GI_ABW, canvas, monX, monY,flip);
 		}
 		
 		//BRC Alphan
 		if(String.valueOf(genetics[7]).substring(0,2).equalsIgnoreCase("14")){
-
 			//Wings
 			chromWings(GI_ABRC, GI_ABRCW, canvas, monX, monY, flip);
+		}
 	}
-}
 }
 
 	//Wings
@@ -144,63 +146,79 @@ public class Genetics {
 		}}
 }
 
-	public String getGender(){
-	if(String.valueOf(genetics[9]).substring(0,2).equalsIgnoreCase("11")){
-		return "Male";
-	}else{
-		return "Female";
-	}
-}
 		
 	public void statGen(){
-			/*	 Stat Tier Generation
-				Tier 1 = 40-60
-				Tier 2 = 60-90
-				Tier 3 = 90-110
-				Tier 4 = 110-130
-				Tier 5 = 130-150
-			*/
+		/*	 Stat Tier Generation
+			Tier 1 = 40-60
+			Tier 2 = 60-90
+			Tier 3 = 90-110
+			Tier 4 = 110-130
+			Tier 5 = 130-150
+		*/
 			
-			//Strength
-			if(String.valueOf(genetics[20]).substring(0,1).equalsIgnoreCase("3")){
-				genetics[1] = 90 + (int)(Math.random()*20);
-				}else{
-					System.out.println("Unrecognised Chromosome value: Strength");
-				}
+		//Strength
+		if(String.valueOf(genetics[20]).substring(0,1).equalsIgnoreCase("3")){
+			genetics[1] = 90 + (int)(Math.random()*20);
+			}else{
+				System.out.println("Unrecognised Chromosome value: Strength");
+			}
 					
-			//Dexterity
-			if(String.valueOf(genetics[21]).substring(0,1).equalsIgnoreCase("3")){
-				genetics[2] = 90 + (int)(Math.random()*20);
-				}else{
-					System.out.println("Unrecognised Chromosome value: Dexterity");
-				}
+		//Dexterity
+		if(String.valueOf(genetics[21]).substring(0,1).equalsIgnoreCase("3")){
+			genetics[2] = 90 + (int)(Math.random()*20);
+			}else{
+				System.out.println("Unrecognised Chromosome value: Dexterity");
+			}
 				
-			//Constitution
-			if(String.valueOf(genetics[22]).substring(0,1).equalsIgnoreCase("3")){
-				genetics[3] = 90 + (int)(Math.random()*20);
-				}else{
-					System.out.println("Unrecognised Chromosome value: Constitution");
-				}
+		//Constitution
+		if(String.valueOf(genetics[22]).substring(0,1).equalsIgnoreCase("3")){
+			genetics[3] = 90 + (int)(Math.random()*20);
+			}else{
+				System.out.println("Unrecognised Chromosome value: Constitution");
+			}
 				
-			//Wisdom
-			if(String.valueOf(genetics[23]).substring(0,1).equalsIgnoreCase("3")){
-				genetics[4] = 90 + (int)(Math.random()*20);
-				}else{
-					System.out.println("Unrecognised Chromosome value: Wisdom");
-				}
+		//Wisdom
+		if(String.valueOf(genetics[23]).substring(0,1).equalsIgnoreCase("3")){
+			genetics[4] = 90 + (int)(Math.random()*20);
+			}else{
+				System.out.println("Unrecognised Chromosome value: Wisdom");
+			}
 				
-			//Charisma
-			if(String.valueOf(genetics[24]).substring(0,1).equalsIgnoreCase("3")){
-				genetics[5] = 90 + (int)(Math.random()*20);
-				}else{
-					System.out.println("Unrecognised Chromosome value: Charisma");
-				}
+		//Charisma
+		if(String.valueOf(genetics[24]).substring(0,1).equalsIgnoreCase("3")){
+			genetics[5] = 90 + (int)(Math.random()*20);
+			}else{
+				System.out.println("Unrecognised Chromosome value: Charisma");
+			}
 		}
 
-		/*
-		 		Returns
-		 */
+    private void levelControl(){
+    	if(experience >= ((level *2.5)*(expCurve))){
+    		level = level++;
+    		genetics[1] = (int) (genetics[1] * 0.025);				//Strength
+    		genetics[2] = (int) (genetics[2] * 0.025);				//Dexterity
+    		genetics[3] = (int) (genetics[3] * 0.025);				//Constitution
+    		genetics[4] = (int) (genetics[4] * 0.025);				//Wisdom
+    		genetics[5] = (int) (genetics[5] * 0.025);				//Charisma
+    	}
+    }
+	
+	/*=========================*\
+			Returns
+	\*=========================*/
+	
+	public String returnGender(){
+		if(String.valueOf(genetics[9]).substring(0,2).equalsIgnoreCase("11")){
+			return "Male";
+		}else{
+			return "Female";
+		}
+	}
 
+	public int returnLevel(){
+		return level;
+	}
+	
 	public String returnName(){
 		return name;
 	}
@@ -233,9 +251,9 @@ public class Genetics {
 		}
 	}
 		
-		/*
-		 		Monster Saving
-		 */
+	/*=========================*\
+			Monster Saving
+	\*=========================*/
 	
 	public void saveMon(String path){
 	   	File outputFile;

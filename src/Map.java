@@ -3,7 +3,6 @@ import java.awt.Graphics2D;
 
 public class Map {
 	
-	private int reference;
 	private int layerOne[][] = new int[20][20];
 	private boolean boundary;	//This is set to true on tiles that cannot be walked past
 	
@@ -23,7 +22,7 @@ public class Map {
 		 	being the Y coordinates.
 		 */
 			
-	if(ref == 0){
+	//if(ref == 0){
 		int[][] layerOne = {
 				{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2}, //1
 				{2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2}, //2
@@ -44,10 +43,10 @@ public class Map {
 				{2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2}, //17
 				{2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2}, //18
 				{2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2}, //19
-				{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2}, //20
+				{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2}  //20
 			};
 			System.out.println("loaded");
-		}
+		//}
 	}
 
 	public void renderMap(Graphics2D canvas, int scale){
@@ -61,7 +60,7 @@ public class Map {
 		for(int x = 0; x < layerOne.length; x++){
 			for(int y = 0; y < layerOne[x].length; y++){
 				if(layerOne[x][y] == 1){
-					GI_Grass.drawRotatedScaled(canvas, x*32*scale, y*32*scale, 0, scale);
+					GI_Grass.drawRotatedScaled(canvas, (x*32*scale), (y*32*scale), 0, scale);
 				}
 				
 				if(layerOne[x][y] == 2){

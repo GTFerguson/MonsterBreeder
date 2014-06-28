@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,6 +22,7 @@ public class Main extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	private Mouse GM;
 	private Combat combat;
+	private Map testMap;
 	
 	// Now the 'normal' variables we need throughout the game.
     private Timer timer; 
@@ -62,8 +64,6 @@ public class Main extends JPanel implements ActionListener{
 	//---Monster Card Variables---
 	public MonsterCard MC1 = new MonsterCard();
 	
-	//---Map Variables---
-	public Map testMap = new Map(0);
 	
 	//---Storage for images---
 	private GameImage GI_StartScreen;
@@ -71,6 +71,7 @@ public class Main extends JPanel implements ActionListener{
 	private GameImage GI_GameScreen;
 	private GameImage GI_FightScreen;
 	private GameImage GI_FightAnim;
+	private GameImage GI_Grass;
 			
 	//---Storage for sound---
 	private GameSound GS_MainTheme;
@@ -80,6 +81,7 @@ public class Main extends JPanel implements ActionListener{
 	private boolean sound = false;
 	
 	public Main(){
+		testMap = new Map(0);
 		combat = new Combat();
         //---Mouse---
         GM = new Mouse();
@@ -102,6 +104,7 @@ public class Main extends JPanel implements ActionListener{
 		//---Load Sounds---
         GS_MainTheme = new GameSound("ProfessorOak.mid");
         GS_FightMusic = new GameSound("WildBattle.mid");
+		GI_Grass = new GameImage("Map/Tiles/Grass.png");
 	}
 
 	private static void initUI(){
@@ -153,7 +156,9 @@ public class Main extends JPanel implements ActionListener{
     	
     	//Start Screen
     	if(startScreen){
-    		GI_StartScreen.draw( canvas, 0, 0);
+    		GI_Grass.draw(canvas, 0, 0);
+    		testMap.renderMap(canvas, 1);
+    		//GI_StartScreen.draw( canvas, 0, 0);
     	}else if(menuScreen){
     		GI_MenuScreen.draw( canvas, 0, 0);	
     		
@@ -192,18 +197,15 @@ public class Main extends JPanel implements ActionListener{
 		}
 					
 				//Fight buttons
-					//This wraps up all the calculations for combat into one click.
-					//Player turn
-					if(attackButton){
-						attackPressed(canvas);
-
-						}
-					
-					if(runButton){
-						runPressed();
-			}				
-					//Reset mouse, not exactly the best way to handle it but it works
-					GM.down = false;
+		if(attackButton){
+			attackPressed(canvas);
+		}
+			
+		if(runButton){
+			runPressed();
+		}				
+		//Reset mouse, not exactly the best way to handle it but it works
+		GM.down = false;
 }
 
     /*=========================*\
